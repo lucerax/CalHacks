@@ -2,7 +2,6 @@
 
 <meta charset="utf-8">
 <title>Just News It</title>
-<script type="text/javascript" src="src/bg/background.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Rhodium+Libre&display=swap" rel="stylesheet">
 
 <style type="text/css">
@@ -35,9 +34,12 @@
 	.social-card {
 		border-radius: 0.5em;
 		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-		padding: 1.5vw;
+		padding: 4vw;
 		background-color: #ffffff;
 		cursor: pointer;
+	}
+	.social-card img {
+		vertical-align:text-top;
 	}
 	a {
 		text-decoration: none;
@@ -66,14 +68,23 @@
 
 
 	<div id = "stories">
-		<a href = "usatoday.com">
+		<!-- <a href = "usatoday.com">
 		  <div class = "social-card">
 		  	<h2> Default title </h2>
 		  	<a href = "usatoday.com" id = 'fav'><div class = "source"> <img src = ""> source.com</div></a>
 		  	<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat </p>
 		  </div>
-		 </a>
+		 </a> -->
+
+		 <a href = usatoday.com>
+		 	<div class = 'social-card'>
+		 		<h2>Default title</h2>
+		 		<a href = usatoday.org><img src = 'https://www.google.com/s2/favicons?domain=usatoday.com' /></a><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p></div> </a>
 	</div>
 </div>
 </body>
+
+<script src="../../jquery.min.js"></script>
+<script type="text/javascript" src="../bg/background.js"></script>
+
 
