@@ -28,7 +28,7 @@ function stringDiv() {
 	string += "<a href = " + link + ">";
 	string += "<div class = 'social-card'>";
 	string += "<h2>" + title + "</h2>";
-	string += "<a href = " + link + ">" + iconHTML + '  ' + link + "</a>";
+	string += "<a href = " + link + ">" + iconHTML + '  ' + link.slice(7) + "</a>";
 	string += "<p>" + snippet + "</p>";
 	string += "</div> </a>";
 	return string;
@@ -49,25 +49,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
-chrome.browserAction.onClicked.addListener(function(tab) {
-    console.log('Injecting content script(s)');
-    //On Firefox document.body.textContent is probably more appropriate
-    chrome.tabs.executeScript(tab.id,{
-        code: 'document.body.innerText;'
-        //If you had something somewhat more complex you can use an IIFE:
-        //code: '(function (){return document.body.innerText})();'
-        //If your code was complex, you should store it in a
-        // separate .js file, which you inject with the file: property.
-    },receiveText);
+
+chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
+    var CURRENTURL = tabs[0].url;
 });
 
-//tabs.executeScript() returns the results of the executed script
-//  in an array of results, one entry per frame in which the script
-//  was injected.
-function receiveText(resultsArray){
-    console.log(resultsArray[0]);
+function httpGet(url) {
+
 }
-
-
-
-

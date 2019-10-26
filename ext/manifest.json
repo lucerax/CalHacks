@@ -21,6 +21,10 @@
     "default_popup": "src/page_action/page_action.html"
   },
 
+  "permissions": [
+    "tabs"
+  ],
+
   "content_scripts": [
     {
       "matches": [
