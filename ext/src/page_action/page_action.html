@@ -2,7 +2,7 @@
 
 <meta charset="utf-8">
 <title>Just News It</title>
-<script type="text/javascript" src="background.js"></script>
+<script type="text/javascript" src="src/bg/background.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Rhodium+Libre&display=swap" rel="stylesheet">
 
 <style type="text/css">
@@ -39,9 +39,19 @@
 		background-color: #ffffff;
 		cursor: pointer;
 	}
+	a {
+		text-decoration: none;
+		color: black;
+	}
 	a:hover {
 		color: #4d4d4d;
 		transition: 0.5s ease;
+	}
+	.main-header img {
+		width: 65vw;
+		margin: 0 auto;
+		display: block;
+		padding-bottom: 2.5vw;
 	}
 	
 </style>
@@ -51,16 +61,18 @@
 <div id = "main">
 
 	<div class = "main-header">
-		<img src = "icons/news-01.png" />
+		<img src = "../../icons/news-01.png" />
 	</div>
 
 
 	<div id = "stories">
+		<a href = "usatoday.com">
 		  <div class = "social-card">
 		  	<h2> Default title </h2>
-		  	<div class = "source"> <img src = ""> source.com</div>
+		  	<a href = "usatoday.com" id = 'fav'><div class = "source"> <img src = ""> source.com</div></a>
 		  	<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat </p>
 		  </div>
+		 </a>
 	</div>
 </div>
 </body>

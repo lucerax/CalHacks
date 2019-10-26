@@ -12,10 +12,18 @@ chrome.extension.onMessage.addListener(
     sendResponse();
   });
 
+
+
 function stringDiv() {
 	return "<div class = 'social-card'>" + "information" + "</div>";
 }
 
 document.addEventListener('DOMContentLoaded', function() {
 	$('.stories').append(stringDiv());
+});
+
+alert('opened file');
+
+$("a[href^='http'] #fav").each(function() {
+	$(this).prepend('<img src="https://www.google.com/s2/favicons?domain=' + this.href + '">');
 });
