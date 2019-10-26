@@ -1,8 +1,10 @@
 
 from flask import Flask, jsonify, request, send_from_directory
-
+import requests
 import os
 import logging
+
+
 
 
 app = Flask(__name__)
@@ -10,10 +12,14 @@ app = Flask(__name__)
 
 @app.route('/send_url', methods = ['GET', 'POST'])
 def send_url():
-    item = request.get_json()['u'] #args.get('u')
-    print(item)
+    link = request.get_json()['u'] #args.get('u')
+    print(link)
+
     data = {"returned_url": item}
     print(request.args)
+
+    page = requests.get(item)
+
     return jsonify(data)
 
 
