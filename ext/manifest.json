@@ -16,7 +16,7 @@
   "default_locale": "en",
   "options_page": "src/options/index.html",
   "browser_action": {
-    "default_icon": "default.jpg",
+    "default_icon": "icons/favicon.png",
     "default_title": "page action demo",
     "default_popup": "src/page_action/page_action.html"
   },
