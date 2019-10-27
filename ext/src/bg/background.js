@@ -44,7 +44,7 @@ function getURL() {
                 newsInfo = data
                 /*newsInfo = {"title": [], "provider": [], "description": [], "URL": []}*/
                 console.log("titles are: ", newsInfo["title"])
-                load(2)
+                create(4)
             },
             error: function(data){
                 console.log('ERROR');
@@ -61,48 +61,49 @@ strings = []
 function reportError(){
     string = "<p>" + "Are you sure you're reading good news?" + "</p>";
     strings.push(string)
-    load(1)
+    create(1)
 }
 
-function createDiv(i) {
-
-    while (i >= 0) {
+function createDiv(num) {
+    var i = 0;
+    while (i < num) {
         var title = newsInfo["title"][i];
         var provider = newsInfo["provider"][i];
         var snippet = newsInfo["description"][i];
 
-        string = "";
-    	string += "<a href = \"" + provider + "\">";
-    	string += "<div id = 'apple' class = 'social-card' >";
+    	string = "<a href = \"" + provider + "\">";
+    	string += "<div id = '"+i+"' class = 'social-card' >";
     	string += "<h2>" + title + "</h2>";
     	string += "<a href = " + provider + ">" + provider + "</a>";
     	string += "<p>" + snippet + "</p>";
     	string += "</div> </a>";
-
     	strings.push(string)
-        i -=1
+        i += 1
+    }
+    load(num)
+}
+
+function load(num) {
+    var i = 0;
+    while (i < num) {
+        document.getElementById('stories').innerHTML += strings[i];
+        console.log(i, i.toString())
+        var link = document.getElementById(i.toString()) 
+        var newlink = newsInfo["URL"][i]
+        console.log(newsInfo["URL"])
+        console.log(i,newlink)
+        link.addEventListener('click', function(){ 
+            chrome.tabs.create({url: newlink});   
+        })
+
+        i += 1
+        
     }
 }
 
-function load(i) {
+function create(i) {
     createDiv(i)
-    while (i > 0) {
-        document.getElementById('stories').innerHTML += strings[i];
-        console.log(i, i.toString())
-        console.log('"+i.toString()+"')
-        console.log("apple"+i.toString())
-        var link = document.getElementById('apple') 
-        var newlink = newsInfo["URL"][i]
-        link.addEventListener('click', function(){ 
-            chrome.tabs.create({url: newlink});
-        })
-        i -= 1
-        
-    }
-
-
-
-
+    
     // this second one is just an example, delete later
 }
 
