@@ -26,29 +26,27 @@ def returnDic():
 def send_url():
     link = request.get_json()['u'] #args.get('u')
     data = {"returned_url": link}
-    #print(request.args)
-    #print(link)
+    print(link)
     page = requests.get(link)
     soup = BeautifulSoup(page.text, 'html.parser')
-    #print('souped')
+
     #filter html for relevant text
-    txt = [x.get_text() for x in soup.find_all('div', {'class':'zn-body__paragraph speakable'})]
-    #print("txt: ", txt)
+    txt = [x.get_text() for x in soup.find_all('div', {'class':'zn-body__paragraph speakable', 'class':'zn-body__paragraph', 'class':'zn-body__read-more', 'class': 'zn-body__read-more'})]
+    #print(txt)
     #print('HERE IS OUTPUT')
     article = " ".join(txt)
-    #print(article)
     #print(article)
     #return type must be json for Flask
     keywords = keyResult(article) #going from article to keywords
     #print(keywords)
-    newsInfo = bingResult(keywords) #going from keywords to related news
-    ###newsInfo = {"title": [], "provider": [], "description": []}###
+    news = bingResult(keywords) #going from keywords to related news
     def set_default(obj):
         if isinstance(obj, set):
             return list(obj)
         raise TypeError
+    masterDic["names"] = news
     #newsString = json.dumps(news, default=set_default);
-    return jsonify(newsInfo) #displaying informations about related news
+    return jsonify(masterDic) #displaying informations about related news
 
 
 @app.route("/")

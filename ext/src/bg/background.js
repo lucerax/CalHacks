@@ -1,33 +1,15 @@
-// if you checked "fancy-settings" in extensionizr.com, uncomment this lines
 
-// var settings = new Store("settings", {
-//     "sample_setting": "This is how you use Store.js to remember values"
-// });
-
-// chrome.browserAction.onClicked.addListener(function(tab) {
-//     alert('opened file');
-// });
-
-
-//example of using a message handler from the inject scripts
-// chrome.extension.onMessage.addListener(
-//   function(request, sender, sendResponse) {
-//   	chrome.pageAction.show(sender.tab.id);
-//     sendResponse();
-//   });
-
-// iterate through the links and set these variables
 
 
 var newsInfo = {}
 function getURL() {
-    
+
     chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
     var CURRENTURL = tabs[0].url;
     console.log(CURRENTURL)
     console.log('POST ajax called')
 
-    $.ajax({    
+    $.ajax({
         url: 'http://127.0.0.1:5000/send_url',
         /*data: {u:str},*/
         dataType: 'json',
@@ -47,15 +29,15 @@ function getURL() {
         error: function(data){
             console.log('ERROR');
         },
-         
+
         });
 
     });
 
     console.log("getURL finished")
 
-    
-}   
+
+}
 
 strings = []
 
@@ -66,7 +48,7 @@ function stringDiv(i) {
     var iconHTML = "<img src = 'https://www.google.com/s2/favicons?domain=" + link.slice(7) + "' />";
     var title = newsInfo["title"][i];
     var snippet = newsInfo["description"][i];
-	
+
     string = "";
 	string += "<a href = " + link + ">";
 	string += "<div class = 'social-card'>";
