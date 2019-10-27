@@ -38,8 +38,11 @@ def send_url():
     #print(article)
     #return type must be json for Flask
     keywords = keyResult(article) #going from article to keywords
+    if not keywords:
+        return {"title": "Error"}
     #print(keywords)
-    news = bingResult(keywords) #going from keywords to related news
+    newsInfo = bingResult(keywords) #going from keywords to related news
+    ###newsInfo = {"title": [], "provider": [], "description": [], "URL": []}###
     def set_default(obj):
         if isinstance(obj, set):
             return list(obj)
