@@ -19,13 +19,17 @@ def send_url():
     print(request.args)
 
     page = requests.get(link)
-    soup = BeautifulSoup(page.content, 'html.parser')
-    soup.find_all('meta', name='content')
-    return page.content
+    soup = BeautifulSoup(page.text, 'html.parser')
+    print('souped')
+    lst = [x.get_text() for x in soup.find_all('div', {'class':'zn-body__paragraph speakable'})]
+
+    #+ soup.find_all('p')
+    print(lst)
+    return jsonify(data)
     """
     get text from url
     """
-    return jsonify(data)
+    #return jsonify(data)
 
 
 @app.route("/")
