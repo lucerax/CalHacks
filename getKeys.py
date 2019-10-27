@@ -70,4 +70,5 @@ def sample_analyze_entities(text_content):
 
 def keyResult(article):
     list = sample_analyze_entities(article)
+    print("list: ", list)
     return list

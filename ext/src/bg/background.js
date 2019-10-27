@@ -18,8 +18,8 @@
 
 // iterate through the links and set these variables
 
-var namesList = [];
 
+var newsInfo = {}
 function getURL() {
     
     chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
@@ -36,11 +36,12 @@ function getURL() {
         contentType: 'application/json; charset=utf-8',
         success: function(data) { //callback
             console.log(data);
-            list = data["names"]
-            console.log("printing namesList",)
-            console.log(namesList)
-            console.log("title is:", list[0])
-            stringDiv(list[0])
+            newsInfo = data
+            /*newsInfo = {"title": [], "provider": [], "description": []}*/
+            console.log("titles are: ", newsInfo["title"])
+            stringDiv(0)
+            stringDiv(1)
+            stringDiv(2)
             load()
         },
         error: function(data){
@@ -58,21 +59,19 @@ function getURL() {
 
 strings = []
 
-function stringDiv(title) {
+function stringDiv(i) {
 
     console.log("stringDiv called")
-    var link = "http://usatoday.com";
+    var link = newsInfo["provider"][i];
     var iconHTML = "<img src = 'https://www.google.com/s2/favicons?domain=" + link.slice(7) + "' />";
-    console.log("title is:",title)
-
-    
-    var snippet = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat";
+    var title = newsInfo["title"][i];
+    var snippet = newsInfo["description"][i];
 	
     string = "";
 	string += "<a href = " + link + ">";
 	string += "<div class = 'social-card'>";
 	string += "<h2>" + title + "</h2>";
-	string += "<a href = " + link + ">" + iconHTML + '  ' + link.slice(7) + "</a>";
+	string += "<a href = " + link + ">" + iconHTML + '  ' + link + "</a>";
 	string += "<p>" + snippet + "</p>";
 	string += "</div> </a>";
     console.log("string generated")
@@ -83,13 +82,11 @@ function stringDiv(title) {
 
 
 function load() {
+
     document.getElementById('stories').innerHTML += strings[0];
-    var socialCards = document.getElementsByClassName("social-card");
-    $( ".social-card").on("mouseenter", function() {
-        alert('mouseover');
-        this.addClass('social-card-hover');
-    });
-    document.getElementById('stories').innerHTML += strings[0];
+    document.getElementById('stories').innerHTML += strings[1];
+    document.getElementById('stories').innerHTML += strings[2];
+
     // this second one is just an example, delete later
 }
 

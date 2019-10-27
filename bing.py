@@ -14,12 +14,14 @@ def bingResult(keywords):
     count = 10
     i = 0
 
-    namesList = []
+    newsInfo = {"title": [], "provider": [], "description": []}
         
     while i < count:
         if news_result.value:
             first_news_result = news_result.value[i]
-            namesList.append(first_news_result.name)
+            newsInfo["title"].append(first_news_result.name)
+            newsInfo["provider"].append(first_news_result.provider[0].name)
+            newsInfo["description"].append(first_news_result.description)
             """
             ("num", i, "news url: {}".format(first_news_result.url)),
             ("num", i, "news description: {}".format(first_news_result.description)),
@@ -30,5 +32,6 @@ def bingResult(keywords):
             print("Didn't see any news result data..")
             
         i += 1
-        
-    return namesList
+    
+    print("providers are: ", newsInfo["provider"])
+    return newsInfo
