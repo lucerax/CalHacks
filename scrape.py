@@ -1,5 +1,5 @@
 
-from flask import Flask, jsonify, request, send_from_directory
+from flask import Flask, jsonify, request, render_template, url_for
 import requests
 import os
 import logging
@@ -17,21 +17,26 @@ def send_url():
 
     data = {"returned_url": link}
     print(request.args)
-    """
+
     page = requests.get(link)
-    soup = Beautiful
+    soup = BeautifulSoup(page.content, 'html.parser')
+    soup.find_all('meta', name='content')
     return page.content
+    """
     get text from url
     """
     return jsonify(data)
 
 
-#reroute to index.html
-@app.route('/', methods = ['GET'], defaults = {'path':'index.html'})
-@app.route('/<path:path>', methods = ['GET'])
-def static_file(path):
-    #adds path to end of static
-    return send_from_directory('static', path)
+@app.route("/")
+def index():
+    return render_template("index.html")
+# #reroute to index.html
+# @app.route('/', methods = ['GET'], defaults = {'path':'index.html'})
+# @app.route('/<path:path>', methods = ['GET'])
+# def static_file(path):
+#     #adds path to end of static
+#     return send_from_directory('static', path)
 
 
 
