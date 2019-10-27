@@ -35,6 +35,11 @@ function getURL() {
         type: 'POST',
         contentType: 'application/json; charset=utf-8',
         success: function(data) { //callback
+            if (data["title"] == "Error") {
+                console.log("Error CAUGHT")
+                reportError()
+                return
+            }
             console.log(data);
             newsInfo = data
             /*newsInfo = {"title": [], "provider": [], "description": []}*/
@@ -42,7 +47,7 @@ function getURL() {
             stringDiv(0)
             stringDiv(1)
             stringDiv(2)
-            load()
+            load(2)
         },
         error: function(data){
             console.log('ERROR');
@@ -58,6 +63,12 @@ function getURL() {
 }   
 
 strings = []
+
+function reportError(){
+    string = "<p>" + "Are you sure you're reading good news?" + "</p>";
+    strings.push(string)
+    load(1)
+}
 
 function stringDiv(i) {
 
@@ -80,12 +91,12 @@ function stringDiv(i) {
 
 }
 
-
-function load() {
-
-    document.getElementById('stories').innerHTML += strings[0];
-    document.getElementById('stories').innerHTML += strings[1];
-    document.getElementById('stories').innerHTML += strings[2];
+function load(i) {
+    
+    while (i >= 0) {
+    document.getElementById('stories').innerHTML += strings[i];
+    i -= 1
+    }
 
     // this second one is just an example, delete later
 }
