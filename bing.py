@@ -14,7 +14,7 @@ def bingResult(keywords):
     count = 10
     i = 0
 
-    newsInfo = {"title": [], "provider": [], "description": []}
+    newsInfo = {"title": [], "provider": [], "description": [], "URL": []}
         
     while i < count:
         if news_result.value:
@@ -22,6 +22,7 @@ def bingResult(keywords):
             newsInfo["title"].append(first_news_result.name)
             newsInfo["provider"].append(first_news_result.provider[0].name)
             newsInfo["description"].append(first_news_result.description)
+            newsInfo["URL"].append(first_news_result.url)
             """
             ("num", i, "news url: {}".format(first_news_result.url)),
             ("num", i, "news description: {}".format(first_news_result.description)),
@@ -33,5 +34,4 @@ def bingResult(keywords):
             
         i += 1
     
-    print("providers are: ", newsInfo["provider"])
     return newsInfo

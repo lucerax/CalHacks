@@ -44,7 +44,7 @@ def send_url():
         return {"title": "Error"}
     #print(keywords)
     newsInfo = bingResult(keywords) #going from keywords to related news
-    ###newsInfo = {"title": [], "provider": [], "description": []}###
+    ###newsInfo = {"title": [], "provider": [], "description": [], "URL": []}###
     def set_default(obj):
         if isinstance(obj, set):
             return list(obj)
