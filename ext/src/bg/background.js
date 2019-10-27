@@ -18,25 +18,82 @@
 
 // iterate through the links and set these variables
 
-var link = "http://usatoday.com";
-var iconHTML = "<img src = 'https://www.google.com/s2/favicons?domain=" + link.slice(7) + "' />";
-var title = "Default title";
-var snippet = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat";
+var namesList = [];
+
+
+function getURL(callback) {
+    
+    chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
+    var CURRENTURL = tabs[0].url;
+    console.log(CURRENTURL)
+    console.log('POST ajax called')
+
+    $.ajax({    
+        url: 'http://127.0.0.1:5000/send_url',
+        /*data: {u:str},*/
+        dataType: 'json',
+        data: JSON.stringify({u:CURRENTURL}),
+        type: 'POST',
+        contentType: 'application/json; charset=utf-8',
+        success: function(data) { //callback
+            console.log(data);
+            list = data["names"]
+            list.forEach(push);
+            function push(value) {
+                console.log("pushing")
+                console.log(value)
+                namesList.push(value)
+            }
+            console.log("printing namesList")
+            console.log(namesList)
+            
+
+        },
+        error: function(data){
+            console.log('ERROR');
+        },
+         
+        });
+
+    });
+
+    console.log("getURL finished")
+    callback();
+    
+}   
+
+strings = []
 
 function stringDiv() {
-	string = "";
+
+    console.log("stringDiv called")
+    var link = "http://usatoday.com";
+    var iconHTML = "<img src = 'https://www.google.com/s2/favicons?domain=" + link.slice(7) + "' />";
+    var title = namesList[0];
+    
+    var snippet = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat";
+	
+    string = "";
 	string += "<a href = " + link + ">";
 	string += "<div class = 'social-card'>";
-	string += "<h2>" + title + "</h2>";
+	string += "<h2>" + "hi " + title + "</h2>";
 	string += "<a href = " + link + ">" + iconHTML + '  ' + link.slice(7) + "</a>";
 	string += "<p>" + snippet + "</p>";
 	string += "</div> </a>";
-	return string;
-};
+    console.log("string generated")
+
+	return strings.push(string)
+
+}
 
 document.addEventListener('DOMContentLoaded', function() {
+    $(document).ready(function(){
+    getURL(stringDiv)
+});
 
-	document.getElementById('stories').innerHTML += stringDiv();
+    console.log(namesList)
+
+	document.getElementById('stories').innerHTML += strings[0];
 	var socialCards = document.getElementsByClassName("social-card");
 
 	$( ".social-card").on("mouseenter", function() {
@@ -44,15 +101,13 @@ document.addEventListener('DOMContentLoaded', function() {
 		this.addClass('social-card-hover');
 	});
 
-	document.getElementById('stories').innerHTML += stringDiv();
+	document.getElementById('stories').innerHTML += strings[0];
 	// this second one is just an example, delete later
 
 });
 
 
-chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
-    var CURRENTURL = tabs[0].url;
-});
+
 
 function httpGet(url) {
 

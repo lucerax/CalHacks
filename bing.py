@@ -13,23 +13,22 @@ def bingResult(keywords):
     news_result = client.news.search(query=search_term, market="en-us", count=10)
     count = 10
     i = 0
-    list = []
 
+    namesList = []
         
     while i < count:
         if news_result.value:
             first_news_result = news_result.value[i]
-            list.append({("Total estimated matches value: {}".format(
-                news_result.total_estimated_matches)),
-            ("News result count: {}".format(len(news_result.value))),
-            ("First news name: {}".format(first_news_result.name)),
-            ("First news url: {}".format(first_news_result.url)),
-            ("First news description: {}".format(first_news_result.description)),
-            ("First published time: {}".format(first_news_result.date_published)),
-            ("First news provider: {}".format(first_news_result.provider[0].name))})
+            namesList.append(first_news_result.name)
+            """
+            ("num", i, "news url: {}".format(first_news_result.url)),
+            ("num", i, "news description: {}".format(first_news_result.description)),
+            ("num", i, "published time: {}".format(first_news_result.date_published)),
+            ("num", i, "news provider: {}".format(first_news_result.provider[0].name))})
+            """
         else:
             print("Didn't see any news result data..")
             
         i += 1
         
-    return list
+    return namesList
