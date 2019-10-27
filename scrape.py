@@ -21,15 +21,13 @@ def send_url():
     page = requests.get(link)
     soup = BeautifulSoup(page.text, 'html.parser')
     print('souped')
-    lst = [x.get_text() for x in soup.find_all('div', {'class':'zn-body__paragraph speakable'})]
-
-    #+ soup.find_all('p')
-    print(lst)
-    return jsonify(data)
-    """
-    get text from url
-    """
-    #return jsonify(data)
+    #filter html for relevant text
+    txt = [x.get_text() for x in soup.find_all('div', {'class':'zn-body__paragraph speakable'})]
+    print(txt)
+    output = " ".join(txt)
+    print(output)
+    #return type must be json for Flask
+    return jsonify(output)
 
 
 @app.route("/")

@@ -58,7 +58,7 @@ function send_url() {
         url: '/send_url',
         /*data: {u:str},*/
         dataType: 'json',
-        data: JSON.stringify({u:'https://www.cnn.com/2019/10/18/opinions/hanging-israel-out-to-dry-andelman/index.html'}),
+        data: JSON.stringify({u:str}),
         type: 'POST',
         contentType: 'application/json; charset=utf-8',
         success: function(data) { //callback

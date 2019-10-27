@@ -2,6 +2,7 @@ import json
 from flask import Flask, jsonify
 from getKeys import keyResult
 from bing import bingResult
+from scrape import send_url
 
 app = Flask(__name__)
 
@@ -16,7 +17,7 @@ def first_function():
 
 @app.route('/')
 def hello_world():
-    keywords = keyResult()
+    keywords = send_url()[0]
     print(keywords)
     news = bingResult(keywords)
     def set_default(obj):
@@ -25,7 +26,7 @@ def hello_world():
         raise TypeError
     newsString = json.dumps(news, default=set_default);
     return jsonify(newsString)
-	
+
 """
 @app.route('/add', methods=['GET','POST'])
 def add_function():

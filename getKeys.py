@@ -1,5 +1,6 @@
 from google.cloud import language_v1
 from google.cloud.language_v1 import enums
+from scrape import send_url
 
 
 
@@ -28,13 +29,13 @@ def sample_analyze_entities(text_content):
     encoding_type = enums.EncodingType.UTF8
 
     response = client.analyze_entities(document, encoding_type=encoding_type)
-    
+
     Rep = []
     Entity = []
     Salience= []
     MentionText= []
     MentionType = []
-    
+
     # Loop through entitites returned from the API
     for entity in response.entities:
         #print(u"Representative name for the entity: {}".format(entity.name))
@@ -64,12 +65,10 @@ def sample_analyze_entities(text_content):
     # Get the language of the text, which will be the same as
     # the language specified in the request or, if not specified,
     # the automatically-detected language.
-    
+
     #print(u"Language of the text: {}".format(response.language))
     return(Rep[:3])
 
 def keyResult():
     list = sample_analyze_entities('donald trump attacked mars')
     return list
-
-
