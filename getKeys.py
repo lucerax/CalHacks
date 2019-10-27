@@ -1,6 +1,5 @@
 from google.cloud import language_v1
 from google.cloud.language_v1 import enums
-from scrape import send_url
 
 
 
@@ -69,6 +68,6 @@ def sample_analyze_entities(text_content):
     #print(u"Language of the text: {}".format(response.language))
     return(Rep[:3])
 
-def keyResult():
-    list = sample_analyze_entities('donald trump attacked mars')
+def keyResult(article):
+    list = sample_analyze_entities(article)
     return list
