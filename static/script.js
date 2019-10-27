@@ -1,12 +1,13 @@
-/*let corpus = document.getElementByClass()*/
+  /*let corpus = document.getElementByClass()*/
+$(document).ready(function() {
+  let searchInput = document.getElementById("searchBar");
+  // console.log(searchInput.value);
 
-let searchInput = document.getElementById("searchBar");
-// console.log(searchInput.value);
+  let button = document.getElementById("button");
+  button.addEventListener("click", send_url)
 
-let button = document.getElementById("button");
-button.addEventListener("click", send_url)
-
-let articleList = document.getElementById("articleList");
+  let articleList = document.getElementById("articleList");
+});
 
 // run our API call on the value of the current input!
 function get_articles () {
