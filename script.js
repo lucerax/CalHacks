@@ -51,13 +51,13 @@ function get_articles () {
 }
 
 function send_url() {
-    var str = 'hi'
+    var str = 'https://www.cnn.com/2019/10/18/opinions/hanging-israel-out-to-dry-andelman/index.html'
     console.log(str)
     $.ajax({
         url: '/send_url',
         /*data: {u:str},*/
         dataType: 'json',
-        data: JSON.stringify({u:'hello'}),
+        data: JSON.stringify({u:'https://www.cnn.com/2019/10/18/opinions/hanging-israel-out-to-dry-andelman/index.html'}),
         type: 'POST',
         contentType: 'application/json; charset=utf-8',
         success: function(data) { //callback
@@ -68,4 +68,3 @@ function send_url() {
         }
     });
 }
-
