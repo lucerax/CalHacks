@@ -10,14 +10,15 @@ def bingResult(keywords):
 
     client = NewsSearchAPI(CognitiveServicesCredentials(subscription_key))
 
-    news_result = client.news.search(query=search_term, market="en-us", count=10)
-    count = 10
-    i = 0
+    news_result = client.news.search(query=search_term, market="en-us", count=7)
+    count = 7
+    i = 1
 
     newsInfo = {"title": [], "provider": [], "description": [], "URL": []}
         
     while i < count:
         if news_result.value:
+            print("index:", i)
             first_news_result = news_result.value[i]
             newsInfo["title"].append(first_news_result.name)
             newsInfo["provider"].append(first_news_result.provider[0].name)
@@ -31,7 +32,6 @@ def bingResult(keywords):
             """
         else:
             print("Didn't see any news result data..")
-            
         i += 1
     
     return newsInfo

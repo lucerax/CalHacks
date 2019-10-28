@@ -22,7 +22,8 @@
   },
 
   "permissions": [
-    "tabs"
+    "tabs",
+    "<all_urls>"
   ],
 
   "content_scripts": [

@@ -66,7 +66,7 @@ def sample_analyze_entities(text_content):
     # the automatically-detected language.
 
     #print(u"Language of the text: {}".format(response.language))
-    return(Rep[:3])
+    return(Rep[:5])
 
 def keyResult(article):
     list = sample_analyze_entities(article)
