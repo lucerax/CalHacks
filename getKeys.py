@@ -1,5 +1,8 @@
 from google.cloud import language_v1
 from google.cloud.language_v1 import enums
+from google.oauth2 import service_account
+
+credentials = service_account.Credentials.from_service_account_file('.\project.json')
 
 
 
@@ -11,7 +14,7 @@ def sample_analyze_entities(text_content):
       text_content The text content to analyze
     """
 
-    client = language_v1.LanguageServiceClient()
+    client = language_v1.LanguageServiceClient(credentials = credentials)
 
     # text_content = 'California is a state.'
 
@@ -66,7 +69,7 @@ def sample_analyze_entities(text_content):
     # the automatically-detected language.
 
     #print(u"Language of the text: {}".format(response.language))
-    return(Rep[:3])
+    return(Rep[:5])
 
 def keyResult(article):
     list = sample_analyze_entities(article)
