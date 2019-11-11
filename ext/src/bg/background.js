@@ -74,7 +74,11 @@ function getURL() {
             console.log('POST ajax called')
 
             $.ajax({    
+<<<<<<< HEAD
                 url: 'http://localhost:5000/send_url',
+=======
+                url: 'http://lucerax.pythonanywhere.com/send_url',
+>>>>>>> 2cb4eb6d5138d3eb52aa04887a76af236f7fb505
                 /*data: {u:str},*/
                 dataType: 'json',
                 data: JSON.stringify({u:sentence}),
