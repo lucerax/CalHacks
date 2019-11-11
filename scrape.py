@@ -24,7 +24,8 @@ def returnDic():
 
 @app.route('/send_url', methods = ['GET', 'POST'])
 def send_url():
-    link = request.get_json()['u'] #args.get('u')
+    link = request.get_json()['u']
+    #args.get('u')
     #data = {"returned_url": link}
     #print(link)
     #article = requests.get(link)
@@ -48,6 +49,7 @@ def send_url():
 @app.route("/")
 def index():
     #return render_template("index.html")
+
     return "Backend Server"
 # #reroute to index.html
 # @app.route('/', methods = ['GET'], defaults = {'path':'index.html'})

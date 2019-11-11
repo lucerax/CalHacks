@@ -33,7 +33,7 @@ code = `(function() {
     let textNodes = textNodesUnder(document);
     textNodes = textNodes.filter(t => t.parentElement.tagName !== 'STYLE' && t.parentElement.tagName !== 'SCRIPT' && window.getComputedStyle(t.parentElement, null).getPropertyValue('visibility') === 'visible');
     console.log("textNodes is: ", textNodes)
- 
+
 
     let textByStyle = {};
     for (let i = 0; i < textNodes.length; i++) {
@@ -60,7 +60,7 @@ code = `(function() {
 
 
 function getURL() {
-    
+
     chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
         var CURRENTURL = tabs[0].url;
 
@@ -69,17 +69,12 @@ function getURL() {
         }, function(results) {
 
             var sentence = results[0];
-
+            console.log('TEST')
             console.log(sentence)
             console.log('POST ajax called')
 
-            $.ajax({    
-<<<<<<< HEAD
-                url: 'http://localhost:5000/send_url',
-=======
+            $.ajax({
                 url: 'http://lucerax.pythonanywhere.com/send_url',
->>>>>>> 2cb4eb6d5138d3eb52aa04887a76af236f7fb505
-                /*data: {u:str},*/
                 dataType: 'json',
                 data: JSON.stringify({u:sentence}),
                 type: 'POST',
@@ -94,20 +89,20 @@ function getURL() {
                     newsInfo = data
                     /*newsInfo = {"title": [], "provider": [], "description": [], "URL": []}*/
                     console.log("titles are: ", newsInfo["title"])
-                    create(6)
+                    create(5)
                 },
                 error: function(data){
                     console.log('ERROR');
                 },
-                 
+
             });
         });
 
-        
+
     });
 
-    
-}   
+
+}
 
 strings = []
 
@@ -117,11 +112,6 @@ function reportError(){
     create(1)
 }
 
-function create(i) {
-    createDivs(i)
-    
-    // this second one is just an example, delete later
-}
 
 function createDivs(num) {
     var i = 0;
@@ -145,7 +135,7 @@ function load(num) {
     var i = 0;
     while (i < num) {
         document.getElementById('stories').innerHTML += strings[i];
-        i += 1 
+        i += 1
     }
     addListen(num)
 
@@ -156,7 +146,7 @@ links = {}
 function addListen(num){
     var i = 0;
     while (i < num) {
-        var link = document.getElementById(i.toString()) 
+        var link = document.getElementById(i.toString())
         links[i] = newsInfo["URL"][i]
         console.log(links[i],link.id)
         link.addEventListener('click', function(){

@@ -1,17 +1,11 @@
 from google.cloud import language_v1
 from google.cloud.language_v1 import enums
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 from google.oauth2 import service_account
 
 credentials = service_account.Credentials.from_service_account_file('/home/lucerax/mysite/project.json')
-=======
->>>>>>> 2f970d59632bf745bdc09045c6a9a60f1c472544
-=======
-from google.oauth2 import service_account
 
-credentials = service_account.Credentials.from_service_account_file('.\project.json')
->>>>>>> 2cb4eb6d5138d3eb52aa04887a76af236f7fb505
+
 
 
 
@@ -23,15 +17,8 @@ def sample_analyze_entities(text_content):
       text_content The text content to analyze
     """
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     client = language_v1.LanguageServiceClient(credentials = credentials)
-=======
-    client = language_v1.LanguageServiceClient()
->>>>>>> 2f970d59632bf745bdc09045c6a9a60f1c472544
-=======
-    client = language_v1.LanguageServiceClient(credentials = credentials)
->>>>>>> 2cb4eb6d5138d3eb52aa04887a76af236f7fb505
+
 
     # text_content = 'California is a state.'
 
