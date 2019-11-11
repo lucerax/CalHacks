@@ -5,6 +5,7 @@ from bing import bingResult
 import requests
 import os
 import logging
+import git
 from bs4 import BeautifulSoup
 
 
@@ -55,6 +56,16 @@ def index():
 #     #adds path to end of static
 #     return send_from_directory('static', path)
 
+
+@app.route('/update_server', methods=['POST'])
+def webhook():
+    if request.method == 'POST':
+        repo = git.Repo('https://github.com/lucerax/XRef')
+        origin = repo.remotes.origin
+        origin.pull()
+        return "Successful update to PythonAnywhere"
+    else:
+        return "Unsuccessful in updating PythonAnywhere"
 
 """
 if __name__== "__main__":

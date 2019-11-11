@@ -16,7 +16,11 @@ def bingResult(keywords):
 
     newsInfo = {"title": [], "provider": [], "description": [], "URL": []}
         
+<<<<<<< HEAD
     while i < min(count, len(news_result.value)):
+=======
+    while i < count:
+>>>>>>> 2f970d59632bf745bdc09045c6a9a60f1c472544
         if news_result.value:
             print("index:", i)
             first_news_result = news_result.value[i]

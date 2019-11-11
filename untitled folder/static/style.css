@@ -1,0 +1,70 @@
+/* CSS files add styling rules to your content */
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+body {
+  font-family: helvetica, arial, sans-serif;
+  margin: 0 auto 0 auto;
+  max-width: 800px;
+}
+
+#header {
+  padding: 20px 0;
+}
+
+#header input {
+  padding: 8px 15px;
+  font-size: 14px;
+}
+
+#header input:focus {
+  border: 2px solid #b0fffb;
+}
+
+#header button {
+  border: none;
+  background-color: #ececec;
+  padding: 10px 15px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+#header button:hover {
+  background-color: #d4d4d4;
+}
+
+article {
+  background-color: #f7f7f7;
+  padding: 30px;
+  margin: 15px 0;
+  border: 1px solid #e3e3e3;
+  border-radius: 8px;
+}
+
+article img {
+  width: 300px;
+  border-radius: 8px;
+}
+
+article a {
+  background-color: #5edaf2;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: 0.3s all ease;
+  margin: 10px 0;
+}
+
+article p {
+  margin-bottom: 30px;
+}
+
+article a:hover {
+  background-color: #55c3d9;
+}
