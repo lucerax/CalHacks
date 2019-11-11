@@ -31,7 +31,7 @@ code = `(function() {
       return all;
     }
     let textNodes = textNodesUnder(document);
-    textNodes = textNodes.filter(t => t.parentElement.tagName !== 'STYLE' && t.parentElement.tagName !== 'SCRIPT' && window.getComputedStyle(t.parentElement, null).getPropertyValue('visibility') === 'visible');
+    textNodes = textNodes.filter(t => t.parentElement.tagName !== 'STYLE' && t.parentElement.tagName !== 'SCRIPT' && t.parentElement.tagName == 'P' && window.getComputedStyle(t.parentElement, null).getPropertyValue('visibility') === 'visible');
     console.log("textNodes is: ", textNodes)
 
 
@@ -63,20 +63,21 @@ function getURL() {
 
     chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
         var CURRENTURL = tabs[0].url;
+        console.log(CURRENTURL)
 
         chrome.tabs.executeScript({
             code: code
         }, function(results) {
 
             var sentence = results[0];
-            console.log('TEST')
+            console.log(results)
             console.log(sentence)
             console.log('POST ajax called')
 
             $.ajax({
                 url: 'http://lucerax.pythonanywhere.com/send_url',
                 dataType: 'json',
-                data: JSON.stringify({u:sentence}),
+                data: JSON.stringify({u:sentence, link:CURRENTURL}),
                 type: 'POST',
                 contentType: 'application/json; charset=utf-8',
                 success: function(data) { //callback
@@ -89,7 +90,7 @@ function getURL() {
                     newsInfo = data
                     /*newsInfo = {"title": [], "provider": [], "description": [], "URL": []}*/
                     console.log("titles are: ", newsInfo["title"])
-                    create(5)
+                    createDivs(6)
                 },
                 error: function(data){
                     console.log('ERROR');
@@ -109,7 +110,7 @@ strings = []
 function reportError(){
     string = "<p>" + "No cross-references generated!" + "</p>";
     strings.push(string)
-    create(1)
+    createDivs(1)
 }
 
 
@@ -120,7 +121,7 @@ function createDivs(num) {
         var provider = newsInfo["provider"][i];
         var snippet = newsInfo["description"][i];
 
-    	string = "<div id = '"+i+"' class = 'social-card' >";
+    	string = "<div id='"+i+"' class = 'social-card' >";
     	string += "<h2>" + title + "</h2>";
     	string += "<a >" + provider + "</a>";
     	string += "<p>" + snippet + "</p>";

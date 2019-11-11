@@ -25,23 +25,20 @@ def returnDic():
 @app.route('/send_url', methods = ['GET', 'POST'])
 def send_url():
     link = request.get_json()['u']
-    #args.get('u')
-    #data = {"returned_url": link}
-    #print(link)
-    #article = requests.get(link)
-    #soup = BeautifulSoup(page.text, 'html.parser')
-    #filter html for relevant text
-    #txt = [x.get_text() for x in soup.find_all('div', {'class':'zn-body__paragraph speakable', 'class':'zn-body__paragraph'})] # 'class':'zn-body__read-more', 'class': 'zn-body__read-more'})]
-    #print(txt)
-    #print('HERE IS OUTPUT')
-    #article = " ".join(txt)
-    #print(article)
-    #return type must be json for Flask
+    """
+    args.get('u')
+    data = {"returned_url": link}
+    article = requests.get(link)
+    soup = BeautifulSoup(page.text, 'html.parser')
+    filter html for relevant text
+    txt = [x.get_text() for x in soup.find_all('div', {'class':'zn-body__paragraph speakable', 'class':'zn-body__paragraph'})] # 'class':'zn-body__read-more', 'class': 'zn-body__read-more'})]
+    article = " ".join(txt)
+    """
     keywords = keyResult(link) #going from article to keywords
     if not keywords:
         return {"title": "Error"}
-    #print(keywords)
-    newsInfo = bingResult(keywords) #going from keywords to related news
+    curLink = request.get_json()['link']
+    newsInfo = bingResult(keywords, curLink) #going from keywords to related news
     ###newsInfo = {"title": [], "provider": [], "description": [], "URL": []}###
     return jsonify(newsInfo) #displaying informations about related news
 
