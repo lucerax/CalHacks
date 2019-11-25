@@ -1,11 +1,6 @@
 # JustNewsIt!
 Cal Hacks 6.0 project.
 
-This is a chrome extension that lets you have cross reference to any article you're reading, in one click.
+This is a Chrome Extension that lets you instantly cross reference the content you're currently reading to news articles that discuss similar topics and ideas to improve the reliability of information we interact with.
 
-Setup Instructions:
-1. Download the folder.
-2. Go to chrome settings -> extensions
-3. Turn on Developer Mode
-4. Unload the EXT folder.
-5. You're good to go! Let us know at jhs0640@berkeley.edu if it does not work. 
+Backend server is included in scrape.py and the main extension is within the EXT folder.
