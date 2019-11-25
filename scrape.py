@@ -25,15 +25,7 @@ def returnDic():
 @app.route('/send_url', methods = ['GET', 'POST'])
 def send_url():
     link = request.get_json()['u']
-    """
-    args.get('u')
-    data = {"returned_url": link}
-    article = requests.get(link)
-    soup = BeautifulSoup(page.text, 'html.parser')
-    filter html for relevant text
-    txt = [x.get_text() for x in soup.find_all('div', {'class':'zn-body__paragraph speakable', 'class':'zn-body__paragraph'})] # 'class':'zn-body__read-more', 'class': 'zn-body__read-more'})]
-    article = " ".join(txt)
-    """
+   
     keywords = keyResult(link) #going from article to keywords
     if not keywords:
         return {"title": "Error"}
@@ -46,14 +38,7 @@ def send_url():
 @app.route("/")
 def index():
     #return render_template("index.html")
-
     return "Backend Server"
-# #reroute to index.html
-# @app.route('/', methods = ['GET'], defaults = {'path':'index.html'})
-# @app.route('/<path:path>', methods = ['GET'])
-# def static_file(path):
-#     #adds path to end of static
-#     return send_from_directory('static', path)
 
 
 @app.route('/update_server', methods=['POST'])
