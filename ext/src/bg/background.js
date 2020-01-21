@@ -1,24 +1,4 @@
-// if you checked "fancy-settings" in extensionizr.com, uncomment this lines
-
-// var settings = new Store("settings", {
-//     "sample_setting": "This is how you use Store.js to remember values"
-// });
-
-// chrome.browserAction.onClicked.addListener(function(tab) {
-//     alert('opened file');
-// });
-
-
-//example of using a message handler from the inject scripts
-// chrome.extension.onMessage.addListener(
-//   function(request, sender, sendResponse) {
-//   	chrome.pageAction.show(sender.tab.id);
-//     sendResponse();
-//   });
-
-// iterate through the links and set these variables
-
-
+//using the style attributes of HTML text nodes, we extract relevant strings
 var newsInfo = {}
 
 code = `(function() {
@@ -58,7 +38,7 @@ code = `(function() {
     return bestText;
 })();`;
 
-
+//include url to allow access to the full website when results are displayed
 function getURL() {
 
     chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
